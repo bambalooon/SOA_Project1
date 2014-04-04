@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<katalog xmlns="urn:katalog">
+    <zagajnik powierzchnia="20">
+        <ent imie="Tomek" gatunek="grey" liczba-sloi="4"/>
+        <ent imie="Jerzy" gatunek="white" liczba-sloi="6"/>
+    </zagajnik>
+    <zagajnik powierzchnia="10">
+        <ent imie="Piotr" gatunek="black" liczba-sloi="2"/>
+    </zagajnik>
+</katalog>

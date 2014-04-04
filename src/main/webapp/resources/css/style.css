@@ -1,0 +1,9 @@
+ul {
+    list-style-type: none;
+}
+input {
+    display: block;
+}
+select {
+    display: block;
+}

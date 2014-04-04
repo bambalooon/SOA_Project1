@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Created by IntelliJ IDEA.
+  User: BamBalooon
+  Date: 30.03.14
+  Time: 16:28
+-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+    <title>Katalog entów</title>
+    <h:outputStylesheet library="css" name="style.css" />
+</h:head>
+
+<h:body>
+    <f:view>
+        <h:form>
+            <h:outputText value="Zagajnik"/>
+            <h:selectOneListbox id="zagajnik" value="#{ent.zagajnik}" size="1">
+                <c:forEach items="#{katalog.zagajnik}" var="currentZagajnik" varStatus="zagajnikIter">
+                    <f:selectItem itemValue="#{zagajnikIter.index}" itemLabel="#{currentZagajnik.powierzchnia}"/>
+                </c:forEach>
+            </h:selectOneListbox>
+            <h:outputText value="Liczba słoi:"/>
+            <h:inputText id="liczbaSloi" value="#{ent.liczbaSloi}"/>
+            <h:outputText value="Gatunek:"/>
+            <h:selectOneListbox id="gatunek" value="#{ent.gatunek}" size="1">
+                <f:selectItems value="#{ent.gatunki}" var="gat" itemLabel="#{gat}" itemValue="#{gat}"/>
+                <f:converter converterId="gatunekConverter"/>
+            </h:selectOneListbox>
+            <h:outputText value="Imię:"/>
+            <h:inputText id="imie" value="#{ent.imie}"/>
+            <h:inputHidden id="entIndex" value="#{ent.entIndex}"/>
+            <h:inputHidden id="zagajnikIndex" value="#{ent.zagajnikIndex}"/>
+            <h:commandButton value="akceptuj" action="#{katalog.entControl(ent)}"/>
+        </h:form>
+    </f:view>
+</h:body>
+
+</html>

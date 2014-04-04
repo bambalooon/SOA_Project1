@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Created by IntelliJ IDEA.
+  User: BamBalooon
+  Date: 30.03.14
+  Time: 13:09
+-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:c="http://java.sun.com/jstl/core"
+      xmlns:t="http://java.sun.com/jsf/html">
+
+<h:head>
+    <title>Katalog entów</title>
+    <h:outputStylesheet library="css" name="style.css" />
+</h:head>
+
+<h:body>
+    <f:view>
+        <h:form>
+            <h:outputLink value="XmlServlet">
+                <h:graphicImage name="icons/download.png" alt="download"/>
+            </h:outputLink>
+
+            <h:link outcome="zagajnikControl" value="dodaj zagajnik"/>
+            <ul>
+            <ui:repeat var="currentZagajnik" value="#{katalog.zagajnik}" varStatus="zagajnikIter">
+                 <li>
+                     <h:link outcome="entControl">
+                         <f:param name="zagajnik" value="#{zagajnikIter.index}"/>
+                         <h:graphicImage name="icons/add.png" alt="add"/>
+                     </h:link>
+                     <h:link outcome="zagajnikControl">
+                         <f:param name="zagajnik" value="#{zagajnikIter.index}"/>
+                         <h:graphicImage name="icons/edit.gif" alt="edit"/>
+                     </h:link>
+                     <h:commandLink action="#{katalog.removeEntry}">
+                         <f:param name="zagajnik" value="#{zagajnikIter.index}"/>
+                         <h:graphicImage name="icons/remove.png" alt="remove"/>
+                     </h:commandLink>
+                     Zagajnik(powierzchnia=#{currentZagajnik.powierzchnia})
+                     <ul>
+                         <ui:repeat value="#{currentZagajnik.ent}" var="ent" varStatus="entIter">
+                             <li>
+                                 <h:link outcome="entControl">
+                                     <f:param name="zagajnik" value="#{zagajnikIter.index}"/>
+                                     <f:param name="ent" value="#{entIter.index}"/>
+                                     <h:graphicImage name="icons/edit.gif" alt="edit"/>
+                                 </h:link>
+                                 <h:commandLink action="#{katalog.removeEntry}">
+                                     <f:param name="zagajnik" value="#{zagajnikIter.index}"/>
+                                     <f:param name="ent" value="#{entIter.index}"/>
+                                     <h:graphicImage name="icons/remove.png" alt="remove"/>
+                                 </h:commandLink>
+                                 #{ent.imie}(#{ent.gatunek}) - #{ent.liczbaSloi}
+                             </li>
+                         </ui:repeat>
+                     </ul>
+                 </li>
+            </ui:repeat>
+            </ul>
+        </h:form>
+    </f:view>
+</h:body>
+
+</html>
